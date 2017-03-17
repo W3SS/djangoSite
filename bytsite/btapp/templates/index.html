@@ -1,0 +1,107 @@
+{% load static %}
+{% load thumbnail %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+    </head>
+    <body ng-app="djngSite.controllers" ng-controller="MainController">
+    <div layout="column">
+        <md-sidenav md-class="md-sidenav-left" md-component-id="left" md-disabled-backdrop>
+            <md-list>
+                <div ng-repeat="item in menu">
+                   <md-list-item ng-click="null" href="#{$ item.path $}">
+                        <i class="material-icons">{$ item.icon $}</i>
+                    &emsp;<b>{$ item.menuitem $}</b>
+                    </md-list-item>
+                <md-divider></md-divider>
+                </div>
+            </md-list>   
+        </md-sidenav>
+         <div flex>
+             <nav class="nav-extended">
+                <div class="nav-wrapper">
+                  <!-- <a href="#" class="brand-logo right"><img src="{%static 'assets/logo.png' %}" style="margin-bottom: 5px;"></a> -->
+                  <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                    <ul class="tabs tabs-transparent">
+                     <li class="tab" ng-repeat="item in menu">
+                        <a href="#{$ item.path $}" class="{$ item.active $}">{$ item.menuitem $}</a>
+                      </li>
+                    </ul>
+                </div>                
+             </nav>
+        </div>
+        
+      <div ng-view></div>
+        <div flex>
+            <footer class="page-footer">
+              <div class="container">
+                <div class="row">
+                  <div class="col l6 s12">
+                    <h5 class="white-text">Footer Content</h5>
+                    <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+                  </div>
+                  <div class="col l4 offset-l2 s12">
+                    <h5 class="white-text">Links</h5>
+                    <ul>
+                      <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                      <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                      <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                      <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="footer-copyright">
+                <div class="container">
+                © 2017 Bt sys
+                <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+                </div>
+              </div>
+            </footer>
+        </div>
+      
+    </div>
+
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <!-- AngularJS Material Dependencies -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-resource/1.5.5/angular-resource.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+        <script src="{% static 'app.js' %}"></script>
+        <script src="{% static 'Controller/MainController.js' %}"></script>
+        
+        
+        
+    </body>
+    <style>
+    @import url('https://fonts.googleapis.com/css?family=Quicksand');
+        .menuItem{
+            font-family: 'Quicksand', sans-serif;
+            color: rgb(71, 74, 79);
+        }
+        .material-icons{
+            color: rgb(71, 74, 79);
+            font-size: 21px
+        }
+        .material-icons:hover{
+            color: rgba(71,74,79, 0.7);
+        }
+        md-input-container:not(.md-input-invalid).md-input-focused .md-input {
+            border-color: rgb(71, 74, 79);
+            font-size: 18px;
+        }
+        .md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolbar){
+            background-color: rgb(247, 247, 247);
+        }
+    </style>
+</html>
