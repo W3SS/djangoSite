@@ -1,5 +1,6 @@
 var App = angular.module("djngSite.controllers",['ngMaterial', 'ngRoute','ngResource']);
 
+       
 App.config(function($httpProvider, $interpolateProvider,$routeProvider, $locationProvider){
   $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
   $interpolateProvider.startSymbol('{$');
@@ -22,8 +23,7 @@ App.config(function($httpProvider, $interpolateProvider,$routeProvider, $locatio
              templateUrl : "/static/pages/contact.html"  
          })
          .when("/news",{
-             templateUrl:
-             "/static/pages/news.html"  
+             templateUrl: "/static/pages/news.html"  
          })
         .otherwise({ // Any other URL, take me back to /
             redirectTo: '/'
@@ -31,20 +31,24 @@ App.config(function($httpProvider, $interpolateProvider,$routeProvider, $locatio
 });
 
 App.controller("MainController",['$scope','$mdSidenav',function($scope, $mdSidenav){
+   $('#tabs-swipe-demo').tabs({ 'swipeable': true });
    $scope.toggleOn = buildToggler('left');
     function buildToggler(componentId) {
       return function() {
         $mdSidenav(componentId).toggle();
       };
     }
+
    $scope.menu = [
-       {id: 1, menuitem: 'Inicio', icon: 'dashboard', path: 'home', active:'active'},
-       {id: 2, menuitem: 'Nosotros', icon: 'account_balance', path: 'about', active:''},
-       {id: 3, menuitem: 'Servicios' ,icon: 'contacts', path:'services', active:''},
-       {id: 4, menuitem: 'Productos' ,icon: 'perm_phone_msg', path:'products', active:''},
-       {id: 5, menuitem: 'Noticias', icon: 'class', path: 'news', active:''},
-       {id: 6, menuitem: 'Contacto', icon: 'class', path: 'contact', active:''},
+       {id: 1, menuitem: 'Inicio', icon: 'dashboard', path: 'home'},
+       {id: 2, menuitem: 'Nosotros', icon: 'account_balance', path: 'about'},
+       {id: 3, menuitem: 'Servicios' ,icon: 'contacts', path:'services'},
+       {id: 4, menuitem: 'Productos' ,icon: 'perm_phone_msg', path:'products'},
+       {id: 5, menuitem: 'Noticias', icon: 'class', path: 'news'},
+       {id: 6, menuitem: 'Contacto', icon: 'class', path: 'contact'}
       ];
+
+
 }]);
 
 App.factory('ArticulosApi',['$http', function($http){
