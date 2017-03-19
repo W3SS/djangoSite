@@ -1,12 +1,17 @@
 <div ng-controller="HomeController">
-     <div class="row">
+  <div class="row">
      <div class="col s12 m6 l10">
-      asadsdas
+       <div class="carousel carousel-slider center" data-indicators="true">
+        <div ng-repeat="ban in Banners" class="carousel-item" href="#{$ $index $}!" >
+          <h2>Slide n° {$ $index $}</h2>
+          
+        </div>
+      </div>
      </div>
-        <div class="col s12 m6 l2">
+     <div class="col s12 m6 l2">
           <div class="card"  ng-repeat="art in Articulos">
              <div class="card-image">
-               <img  src="{$ art.imagen $}">
+               <img src="{$ art.imagen $}">
                <span class="card-title">{$ art.titulo $}</span>
                 <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
             </div>
@@ -14,7 +19,15 @@
                  <p>{$ art.texto $}</p>
             </div>
            </div>
-        </div>
-      </div>
+    </div>
+  </div>
 </div>
+
+<script type="text/javascript">
+  $(function(){
+    $('.carousel.carousel-slider').carousel({fullWidth: true});
+  });
+</script>
+
+
 

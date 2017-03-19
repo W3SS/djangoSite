@@ -1,4 +1,4 @@
-var App = angular.module("djngSite.controllers",['ngMaterial', 'ngRoute','ngResource']);
+var App = angular.module("djngSite.controllers",['ngRoute','ngResource']);
 
        
 App.config(function($httpProvider, $interpolateProvider,$routeProvider, $locationProvider){
@@ -30,15 +30,7 @@ App.config(function($httpProvider, $interpolateProvider,$routeProvider, $locatio
         });
 });
 
-App.controller("MainController",['$scope','$mdSidenav',function($scope, $mdSidenav){
-   $('#tabs-swipe-demo').tabs({ 'swipeable': true });
-   $scope.toggleOn = buildToggler('left');
-    function buildToggler(componentId) {
-      return function() {
-        $mdSidenav(componentId).toggle();
-      };
-    }
-
+App.controller("MainController",['$scope',function($scope){
    $scope.menu = [
        {id: 1, menuitem: 'Inicio', icon: 'dashboard', path: 'home'},
        {id: 2, menuitem: 'Nosotros', icon: 'account_balance', path: 'about'},
@@ -50,7 +42,12 @@ App.controller("MainController",['$scope','$mdSidenav',function($scope, $mdSiden
 
 
 }]);
-
+App.factory('BannersApi',['$http', function($http){
+    return $http.get('/api/banner/')
+        .then(function(response) {
+                return response.data;
+    });
+}]);
 App.factory('ArticulosApi',['$http', function($http){
     return $http.get('/api/articulo/')
         .then(function(response) {
@@ -58,12 +55,11 @@ App.factory('ArticulosApi',['$http', function($http){
     });
 }]);
 
-App.controller("HomeController",['$scope','ArticulosApi',function($scope, ArticulosApi){
+App.controller("HomeController",['$scope','ArticulosApi','BannersApi',function($scope,ArticulosApi, BannersApi){
     ArticulosApi.then(function(data){
      $scope.Articulos = data.objects; 
     });
+    BannersApi.then(function(data){
+     $scope.Banners = data.objects; 
+    });
 }]);
-
-
-
-
